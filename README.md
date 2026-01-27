@@ -4,7 +4,7 @@ A big fetch cache for your git objects
 
 > ⚠️ This is a footgun. If you don't like to shoot yourself in the feet, then don't use this footgun ⚠️
 
-Therefore "this project destroyed 3 weeks of my work" is not a valid issue. You've been warned.
+Therefore "this project destroyed 3 weeks of my work 😭" is not a valid issue. You've been warned.
 
 ## Config
 

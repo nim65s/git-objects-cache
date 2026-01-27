@@ -58,8 +58,7 @@ class Config:
         if "repo" not in self.conf[_NAME]:
             _LOG.debug("adding repo to conf")
             self.conf[_NAME]["repo"] = str(self.repo.absolute())
-            with self.conf_file.open("w") as f:
-                dump(self.conf, f, sort_keys=True)
+            self.dump()
 
         if not self.repo.is_dir():
             _LOG.info("creating '%s' repo", self.repo)
@@ -74,6 +73,11 @@ class Config:
             with (info / "alternates").open("w") as f:
                 print((self.repo / "objects").absolute(), file=f)
             check_call(["git", "config", "--global", "init.templateDir", template])
+
+    def dump(self):
+        _LOG.debug("updating '%s'", self.conf_file)
+        with self.conf_file.open("w") as f:
+            dump(self.conf, f, sort_keys=True)
 
 
 def parse_args():
@@ -98,6 +102,15 @@ def parse_args():
         "-f", "--fast", action="store_true", help="don't update remotes before fetching"
     )
 
+    subparsers = parser.add_subparsers(dest="command")
+
+    add_parser = subparsers.add_parser("add", help="add (or update) a remote")
+    add_parser.add_argument("url")
+    add_parser.add_argument("name", nargs="?")
+
+    remove_parser = subparsers.add_parser("remove", help="remove a remote")
+    remove_parser.add_argument("name")
+
     return parser.parse_args()
 
 
@@ -106,9 +119,22 @@ def main():
 
     basicConfig(level=30 - 10 * args.verbose + 10 * args.quiet)
 
+    _LOG.debug("args: %s", args)
+
     _LOG.info("init...")
 
     config = Config()
+
+    if args.command == "add":
+        name = args.name or args.url.strip("/").split("/")[-1].removesuffix(".git")
+        _LOG.info("adding remote '%s' to '%s'", name, args.url)
+        config.conf["remotes"][name] = args.url
+        config.dump()
+
+    elif args.command == "remove":
+        _LOG.info("removing remote '%s'", args.name)
+        del config.conf["remotes"][args.name]
+        config.dump()
 
     if not args.fast:
         _LOG.info("sync remotes with config file...")
