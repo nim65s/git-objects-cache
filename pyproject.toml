@@ -1,0 +1,19 @@
+[project]
+name = "git-objects-cache"
+version = "0.1.0"
+description = "A big fetch cache for your git objects"
+readme = "README.md"
+authors = [
+    { name = "Guilhem Saurel", email = "guilhem.saurel@laas.fr" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "tomlkit>=0.14.0",
+]
+
+[project.scripts]
+git-objects-cache = "git_objects_cache:main"
+
+[build-system]
+requires = ["uv_build>=0.9.5,<0.10.0"]
+build-backend = "uv_build"
