@@ -1,4 +1,4 @@
-# git objects cache
+# git objects-cache
 
 A big fetch cache for your git objects
 
