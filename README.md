@@ -1,6 +1,6 @@
 # git objects-cache
 
-A big fetch cache for your git objects
+A manual fetch cache for your git objects
 
 > ⚠️ This is a footgun. If you don't like to shoot yourself in the feet, then don't use this footgun ⚠️
 
@@ -11,7 +11,7 @@ Therefore "this project destroyed 3 weeks of my work 😭" is not a valid issue.
 ```
 usage: git objects-cache [-h] [-q] [-v] [-f] {add,remove} ...
 
-A big fetch cache for your git objects
+A manual fetch cache for your git objects
 
 positional arguments:
   {add,remove}

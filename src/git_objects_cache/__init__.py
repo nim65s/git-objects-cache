@@ -1,5 +1,10 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = ["tomlkit"]
+# ///
+
 """
-A big fetch cache for your git objects
+A manual fetch cache for your git objects
 """
 
 from argparse import ArgumentParser
@@ -171,3 +176,7 @@ def main():
     _LOG.info("updating cache...")
     check_call(["git", "fetch", "--all", "--no-tags", "--prune"], cwd=config.repo)
     _LOG.debug("done.")
+
+
+if __name__ == "__main__":
+    main()
