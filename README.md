@@ -6,7 +6,28 @@ A big fetch cache for your git objects
 
 Therefore "this project destroyed 3 weeks of my work 😭" is not a valid issue. You've been warned.
 
+## Usage
+
+```
+usage: git objects-cache [-h] [-q] [-v] [-f] {add,remove} ...
+
+A big fetch cache for your git objects
+
+positional arguments:
+  {add,remove}
+    add          add (or update) a remote
+    remove       remove a remote
+
+options:
+  -h, --help     show this help message and exit
+  -q, --quiet    decrement verbosity level
+  -v, --verbose  increment verbosity level
+  -f, --fast     don't check/update remotes before fetching
+```
+
 ## Config
+
+(this file is created on first run if needed)
 
 `~/.config/git-objects-cache/config.toml`, eg.:
 ```toml
@@ -19,8 +40,6 @@ example-robot-data = "https://github.com/gepetto/example-robot-data"
 pinocchio = "https://github.com/stack-of-tasks/pinocchio"
 rosdistro = "https://github.com/ros/rosdistro/"
 ```
-
-(this file is created on first run if needed)
 
 ## Idea
 

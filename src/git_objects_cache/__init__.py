@@ -1,6 +1,4 @@
 """
-git-objects-cache
-
 A big fetch cache for your git objects
 """
 
@@ -99,7 +97,10 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-f", "--fast", action="store_true", help="don't update remotes before fetching"
+        "-f",
+        "--fast",
+        action="store_true",
+        help="don't check/update remotes before fetching",
     )
 
     subparsers = parser.add_subparsers(dest="command")
