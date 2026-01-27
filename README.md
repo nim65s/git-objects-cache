@@ -46,7 +46,9 @@ rosdistro = "https://github.com/ros/rosdistro/"
 This create a big bare git repo just for cache.
 In there, you can put one remote per project you want available in that cache, and `git fetch --all --no-tags --prune` as often as you want.
 
-Then it create a init template with that repo in objects/info/alternates.
+Then it create a init template with that repo in `objects/info/alternates`.
+
+ℹ️ For that a `git config --global init.templateDir` will be run !
 
 So next time you clone something, objects that are already fetched in that cache don't need to be downloaded again.
 
