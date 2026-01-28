@@ -25,4 +25,4 @@ jobs:
       - run: du -s example-robot-data/.git
       - run: du -s ~/.cache/git-objects-cache
 
-      - run: test $(du -s example-robot-data/.git | cut -f1) -gt $(du -s ~/.cache/git-objects-cache | cut -f1)
+      - run: test $(du -s example-robot-data/.git | cut -f1) -lt $(du -s ~/.cache/git-objects-cache | cut -f1)
