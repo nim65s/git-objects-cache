@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+
+      - run: uv run ruff check .
+
+      - run: uv tool install .
+
+      - run: git objects-cache -v add https://github.com/gepetto/example-robot-data
+      - run: git clone https://github.com/gepetto/example-robot-data
+
+      - run: du -s example-robot-data/.git 
+      - run: du -s ~/.cache/git-objects-cache
+
+      - run: test $(du -s example-robot-data/.git | cut -f1) -gt $(du -s ~/.cache/git-objects-cache | cut -f1)
